@@ -1,13 +1,11 @@
 <script setup>
   import Schedule from '../info/Schedule.vue'
+
+  
 </script>
 
 <template>
   <div class="flex-col justify-center w-full h-full">
-    <div class="flex w-full">
-      <button class="bg-white font-bold text-3xl text-purple-600 w-2/4 rounded-t-xl h-12">Agendamentos</button>
-      <button class="bg-purple-600 font-bold text-3xl text-white w-2/4 rounded-t-xl h-12">Usuários</button>
-    </div>
     <div class="bg-white flex-col w-full p-4 h-full">
       <div class="bg-gray-200 flex-col w-full rounded-lg h-full">
         <div class="flex justify-between w-full font-bold px-3 py-2">
@@ -20,7 +18,6 @@
         </div>
         <div class="w-full h-px bg-white"></div>
         <ul class="w-full h-5/6 overflow-y-auto">
-          <li><Schedule /></li>
           <li><Schedule /></li>
           <li><Schedule /></li>
           <li><Schedule /></li>
