@@ -1,70 +1,25 @@
 <script setup>
 import User from './info/User.vue'
 import CreateUser from './modals/CreateUser.vue'
-import {onMounted, onUnmounted, ref } from 'vue'
+import EditUser from './modals/EditUser.vue';
+import { onMounted, onUnmounted, ref } from 'vue'
 
 
 const users = ref([
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },{
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },{
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },{
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
-  {
-    name: 'Vitor Ferreira',
-    email: 'vitorteste@gmail.com',
-    password: 'Senha123!'
-  },
+  
 ])
 
 const showModal = ref(false)
+const showEditUserModal = ref(false);
+
+function openEditUserModal() {
+  showEditUserModal.value = true;
+}
 
 const closeEscape = event => {
   if (event.key == 'Escape') {
     showModal.value = false;
-    showModalEdit.value = false;
+    showEditUserModal.value = false;
   }
 }
 
@@ -89,7 +44,7 @@ onUnmounted(() => {
       <div>
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(user, index) in users" :key="index">
-            <User :id="index" :name="user.name" :email="user.email" :password="user.password" />
+            <User :id="index" :name="user.name" :email="user.email" :password="user.password" @editUser="openEditUserModal" />
           </li>
         </ul>
       </div>
@@ -105,6 +60,13 @@ onUnmounted(() => {
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-2/4">
       <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
       <CreateUser />
+    </div>
+  </div>
+
+  <div v-if="showEditUserModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-4 rounded shadow-md w-2/4 h-2/4">
+      <button @click="showEditUserModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
+      <EditUser />
     </div>
   </div>
 </template>

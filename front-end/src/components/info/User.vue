@@ -1,21 +1,22 @@
 <script setup>
 import { ref } from 'vue';
 
-  defineProps({
-    name: String,
-    email: String,
-    password: String,
-  })
+defineProps({
+  name: String,
+  email: String,
+  password: String,
+})
 
-  const passwordVisible = ref(false)
-  const editValue = ref(true)
+const passwordVisible = ref(false)
+const emit = defineEmits(['editUser']);
 
-  function showPassword() {
-    passwordVisible.value = !passwordVisible.value
-  }
+function showPassword() {
+  passwordVisible.value = !passwordVisible.value
+}
 
-
-  
+function openEditUserModal() {
+  emit('editUser');
+}
 </script>
 
 <template>
@@ -29,8 +30,8 @@ import { ref } from 'vue';
         <img v-if="passwordVisible" src="../../assets/eye-slash.svg" alt="Mostrar senha">
         <img v-else src="../../assets/eye.svg" alt="Mostrar senha">
       </button>
-      <button class="bg-purple-600 flex justify-center items-center rounded w-14 p-1 h-7">
-        <img @click="emit('edit', editValue)" src="../../assets/edit.svg" alt="Edit Button">
+      <button @click="openEditUserModal" class="bg-purple-600 flex justify-center items-center rounded w-14 p-1 h-7">
+        <img src="../../assets/edit.svg" alt="Edit Button">
       </button>
       <button class="bg-purple-600 flex justify-center items-center rounded w-14 p-1 h-7">
         <img src="../../assets/delete.svg" alt="Delete Button">

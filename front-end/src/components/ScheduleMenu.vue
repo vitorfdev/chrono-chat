@@ -1,71 +1,24 @@
 <script setup>
 import Schedule from './info/Schedule.vue'
 import CreateSchedule from './modals/CreateSchedule.vue';
+import EditSchedule from './modals/EditSchedule.vue';
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const schedules = ref([
-  {
-    date: '20/04/2024 - 15:22',
-    phone: '+5543999117441',
-    message: 'Hello World! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:23'
-  },
-  {
-    date: '20/04/2024 - 15:24',
-    phone: '+5543999117441',
-    message: 'Hello Sky! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:25'
-  },
-  {
-    date: '20/04/2024 - 15:26',
-    phone: '+5543999117441',
-    message: 'Hello Ocean! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:27'
-  },
-  {
-    date: '20/04/2024 - 15:24',
-    phone: '+5543999117441',
-    message: 'Hello Sky! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:25'
-  },
-  {
-    date: '20/04/2024 - 15:26',
-    phone: '+5543999117441',
-    message: 'Hello Ocean! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:27'
-  },
-  {
-    date: '20/04/2024 - 15:24',
-    phone: '+5543999117441',
-    message: 'Hello Sky! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:25'
-  },
-  {
-    date: '20/04/2024 - 15:26',
-    phone: '+5543999117441',
-    message: 'Hello Ocean! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:27'
-  },
-  {
-    date: '20/04/2024 - 15:24',
-    phone: '+5543999117441',
-    message: 'Hello Sky! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:25'
-  },
-  {
-    date: '20/04/2024 - 15:26',
-    phone: '+5543999117441',
-    message: 'Hello Ocean! Mensagem teste',
-    scheduleDate: '20/04/2024 - 15:27'
-  }
-
+  
 ])
 
 const showModal = ref(false)
+const showEditScheduleModal = ref(false);
+
+function openEditScheduleModal() {
+  showEditScheduleModal.value = true;
+}
 
 const closeEscape = event => {
   if (event.key == 'Escape') {
     showModal.value = false;
+    showEditScheduleModal.value = false;
   }
 }
 
@@ -93,7 +46,7 @@ onUnmounted(() => {
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(schedule, index) in schedules" :key="index">
             <Schedule :id="index" :date="schedule.date" :phone="schedule.phone" :message="schedule.message"
-              :scheduleDate="schedule.scheduleDate" />
+              :scheduleDate="schedule.scheduleDate" @editSchedule="openEditScheduleModal"/>
           </li>
         </ul>
       </div>
@@ -108,6 +61,13 @@ onUnmounted(() => {
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-3/4">
       <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
       <CreateSchedule />
+    </div>
+  </div>
+
+  <div v-if="showEditScheduleModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-4 rounded shadow-md w-2/4 h-3/4">
+      <button @click="showEditScheduleModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
+      <EditSchedule />
     </div>
   </div>
 </template>
