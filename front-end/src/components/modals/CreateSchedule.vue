@@ -8,7 +8,7 @@
       <div>
         <div class="">
           <label for="phone">Telefone</label>
-          <input class="border rounded p-2 w-full" type="tel" name="phone" id="phone" placeholder="5543999999999" required>
+          <input class="border rounded p-2 w-full" type="tel" name="phone" id="phone" maxlength="13" placeholder="554399999999" required>
         </div>
         <div class="">
           <label for="date">Data</label>
@@ -16,7 +16,7 @@
         </div>
         <div class="">
           <label for="message">Mensagem</label>
-          <textarea class="resize-none border rounded p-2 w-full" name="message" id="message" cols="30" rows="10" placeholder="Digite aqui sua mensagem" required></textarea>
+          <textarea class="resize-none border rounded p-2 w-full" name="message" id="message" cols="30" rows="10" maxlength="200" placeholder="Digite aqui sua mensagem" required></textarea>
         </div>
       </div>
       <div class="flex justify-center">

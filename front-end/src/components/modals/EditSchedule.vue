@@ -16,7 +16,7 @@
         </div>
         <div class="">
           <label for="message">Mensagem</label>
-          <textarea class="resize-none border rounded p-2 w-full" name="message" id="message" cols="30" rows="10" placeholder="Digite aqui sua mensagem" required></textarea>
+          <textarea class="resize-none border rounded p-2 w-full" name="message" id="message" cols="30" rows="10" maxlength="200" placeholder="Digite aqui sua mensagem" required></textarea>
         </div>
       </div>
       <div class="flex justify-center">
