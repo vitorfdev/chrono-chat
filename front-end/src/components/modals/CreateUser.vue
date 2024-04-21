@@ -8,15 +8,15 @@
       <div>
         <div class="">
           <label for="name">Nome</label>
-          <input class="border rounded p-2 w-full" type="text" name="name" id="name" placeholder="Seu nome completo" required>
+          <input class="border rounded p-2 w-full" type="text" name="name" id="name" maxlength="50" placeholder="Seu nome completo" required>
         </div>
         <div class="">
           <label for="email">Email</label>
-          <input class="border rounded p-2 w-full" type="email" name="email" id="email" placeholder="email@email.com" required>
+          <input class="border rounded p-2 w-full" type="email" name="email" id="email" maxlength="50" placeholder="email@email.com" required>
         </div>
         <div class="">
           <label for="password">Senha</label>
-          <input class="border rounded p-2 w-full" type="password" name="password" id="password" placeholder="Sua nova senha" required>
+          <input class="border rounded p-2 w-full" type="password" name="password" id="password" maxlength="24" placeholder="Sua nova senha" required>
         </div>
         
       </div>
