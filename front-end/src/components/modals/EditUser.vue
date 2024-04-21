@@ -21,7 +21,7 @@
         
       </div>
       <div class="flex justify-center">
-        <button class="bg-purple-600 rounded-lg p-4 w-2/4 text-white hover:bg-purple-800 duration-200">Criar Usuário</button>
+        <button class="bg-purple-600 rounded-lg p-4 w-2/4 text-white hover:bg-purple-800 duration-200">Editar Usuário</button>
       </div>
     </form>
   </div>

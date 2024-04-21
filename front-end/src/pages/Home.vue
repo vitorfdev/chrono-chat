@@ -1,11 +1,11 @@
 <script>
-  import CreateSchedule from '../components/modals/CreateSchedule.vue'
-  import CreateUser from '../components/modals/CreateUser.vue'
+  import ScheduleMenu from '../components/ScheduleMenu.vue';
+  import UserMenu from '../components/UserMenu.vue';
 
   export default {
     components: {
-      CreateSchedule,
-      CreateUser
+      ScheduleMenu,
+      UserMenu
     },
     data() {
       return {
@@ -16,30 +16,26 @@
 </script>
 
 <template>
-  <div class="flex flex-col bg-gradient-to-tr from-purple-950 from-30% to-purple-600 to-80% h-dvh">
-    <header class="flex items-center w-full h-1/6">
-      <img class="mx-16" src="../assets/medium-logo.svg" alt="">
+  <div class="flex flex-col bg-gradient-to-tr from-purple-950 from-30% to-purple-600 to-80% h-svh w-svw">
+    <header class="flex items-center justify-between w-full h-1/6">
+      <img class="mx-16" src="../assets/medium-logo.svg" alt="Logo do site">
+      <div class="bg-white hover:bg-slate-400 flex text-purple-600 rounded-lg mx-16 p-4">
+        <p class="mx-2 font-bold">Sair da conta</p>
+        <img class="mx-2" src="../assets/tag-cross.svg" alt="Log Off da conta">
+      </div>
     </header>
-    <main class="flex justify-center items-center flex-1 px-16 w-full h-4/6">
-      <div class="flex-col justify-center w-full h-full">
-        <Transition>
-          <div v-if="schedule">
-            <div class="flex w-full">
-              <button @click="schedule = true" class="bg-white font-bold text-3xl text-purple-600 w-2/4 rounded-t-xl h-12">Agendamentos</button>
-              <button @click="schedule = false" class="bg-purple-600 font-bold text-3xl text-white w-2/4 rounded-t-xl h-12">Usuários</button>
-            </div>
-          </div>
-          <div v-else>
-            <div class="flex w-full">
-              <button @click="schedule = true" class="bg-purple-600 font-bold text-3xl text-white w-2/4 rounded-t-xl h-12">Agendamentos</button>
-              <button @click="schedule = false" class="bg-white font-bold text-3xl text-purple-600 w-2/4 rounded-t-xl h-12">Usuários</button>
-            </div>
-          </div>
-        </Transition>
-        <Transition>
-          <CreateSchedule v-if="schedule"/>
-          <CreateUser v-else/>
-        </Transition>
+    <main class="flex justify-center items-center w-svw h-svh overflow-hidden">
+      <div class="flex-row">
+        <div v-if="schedule" class="w-lvw">
+          <button @click="schedule = true" class="bg-white font-bold text-3xl text-purple-600 w-2/4 rounded-t-xl h-12">Agendamentos</button>
+          <button @click="schedule = false" class="bg-purple-600 font-bold text-3xl text-white w-2/4 rounded-t-xl h-12">Usuários</button>
+        </div>
+        <div v-else class="w-lvw">
+          <button @click="schedule = true" class="bg-purple-600 font-bold text-3xl text-white w-2/4 rounded-t-xl h-12">Agendamentos</button>
+          <button @click="schedule = false" class="bg-white font-bold text-3xl text-purple-600 w-2/4 rounded-t-xl h-12">Usuários</button>
+        </div>
+        <ScheduleMenu v-if="schedule"/>
+        <UserMenu v-else/>
       </div>
     </main>
     <footer class="flex justify-center items-end w-full h-1/6">

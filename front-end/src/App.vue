@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="app h-full">
+  <div class="app h-svh w-svw">
     <!-- Router View eh responsavel por mostrar a pagina baseada na rota setada no router/index.js -->
     <router-view></router-view>
   </div>
