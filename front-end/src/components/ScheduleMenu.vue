@@ -58,8 +58,8 @@ onUnmounted(() => {
       <div>
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(schedule, index) in schedules" :key="index">
-            <Schedule :id="index" :date="schedule.formattedCreateDate" :phone="schedule.phone" :message="schedule.message"
-              :scheduleDate="schedule.formattedScheduleDate" @editSchedule="openEditScheduleModal"/>
+            <Schedule :id="index" :idDB="schedule.id" :date="schedule.formattedCreateDate" :phone="schedule.phone" :message="schedule.message"
+              :scheduleDate="schedule.formattedScheduleDate" :fetch="fetchSchedules" @editSchedule="openEditScheduleModal"/>
           </li>
         </ul>
       </div>

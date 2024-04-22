@@ -51,7 +51,7 @@ onUnmounted(() => {
       <div>
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(user, index) in users" :key="index">
-            <User :id="index" :name="user.username" :email="user.email" :password="user.password" @editUser="openEditUserModal" />
+            <User :id="user.id" :name="user.username" :email="user.email" :password="user.password" :fetch="fetchUsers" @editUser="openEditUserModal" />
           </li>
         </ul>
       </div>
