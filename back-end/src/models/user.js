@@ -30,6 +30,19 @@ const User = {
     })
     db.close()
   },
+  findByEmail: function(email, callback) {
+    const db = connectDatabase();
+    const sql = `SELECT * FROM users WHERE email = ?`;
+    db.get(sql, [email], (err, row) => {
+      if (err) {
+        console.log('Erro ao procurar usuário por email', err.message);
+        return callback(err, null);
+      }
+      console.log('Usuário encontrado por email', row);
+      db.close(); // Fechar o banco de dados após a consulta
+      return callback(null, row);
+    });
+  },
   update: function(id, username, email, password, callback) {
     const db = connectDatabase()
     const sql = `UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?`

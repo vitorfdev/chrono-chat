@@ -19,10 +19,10 @@
   <div class="flex flex-col bg-gradient-to-tr from-purple-950 from-30% to-purple-600 to-80% h-svh w-svw">
     <header class="flex items-center justify-between w-full h-1/6">
       <img class="mx-16" src="../assets/medium-logo.svg" alt="Logo do site">
-      <div class="bg-white hover:bg-slate-400 flex text-purple-600 rounded-lg mx-16 p-4">
+      <button @click="this.$router.push('/')" class="bg-white hover:bg-slate-400 flex text-purple-600 rounded-lg mx-16 p-4">
         <p class="mx-2 font-bold">Sair da conta</p>
         <img class="mx-2" src="../assets/tag-cross.svg" alt="Log Off da conta">
-      </div>
+      </button>
     </header>
     <main class="flex justify-center items-center w-svw h-svh overflow-hidden">
       <div class="flex-row">
