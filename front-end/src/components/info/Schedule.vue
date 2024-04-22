@@ -17,10 +17,10 @@ const deleteSchedule = async () => {
   props.fetch()
 }
 
-const emit = defineEmits(['editSchedule'])
-
+const emit = defineEmits(['editSchedule', 'sendId'])
 function openEditScheduleModal() {
   emit('editSchedule')
+  emit('sendId', props.idDB)
 }
 </script>
 
