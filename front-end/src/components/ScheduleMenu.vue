@@ -20,17 +20,22 @@ const fetchSchedules = async () => {
   schedules.value = rawSchedules
 }
 
-const showModal = ref(false)
-const showEditScheduleModal = ref(false)
+const showCreate = ref(false)
 
-function openEditScheduleModal() {
-  showEditScheduleModal.value = true
+function toggleCreate() {
+  showCreate.value = !showCreate.value
 }
+const showEdit = ref(false)
+
+function toggleEdit() {
+  showEdit.value = !showEdit.value
+}
+
 
 const closeEscape = event => {
   if (event.key == 'Escape') {
-    showModal.value = false
-    showEditScheduleModal.value = false
+    showCreate.value = false
+    showEdit.value = false
   }
 }
 
@@ -59,27 +64,27 @@ onUnmounted(() => {
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(schedule, index) in schedules" :key="index">
             <Schedule :id="index" :idDB="schedule.id" :date="schedule.formattedCreateDate" :phone="schedule.phone" :message="schedule.message"
-              :scheduleDate="schedule.formattedScheduleDate" :fetch="fetchSchedules" @editSchedule="openEditScheduleModal"/>
+              :scheduleDate="schedule.formattedScheduleDate" :fetch="fetchSchedules" @editSchedule="toggleEdit"/>
           </li>
         </ul>
       </div>
       <div>
-        <button @click="showModal = true" class="bg-purple-600 rounded-lg p-2 w-64 text-white hover:bg-purple-800 duration-200 m-2">Agendar
+        <button @click="toggleCreate" class="bg-purple-600 rounded-lg p-2 w-64 text-white hover:bg-purple-800 duration-200 m-2">Agendar
           Mensagem</button>
       </div>
     </div>
   </div>
 
-  <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div v-if="showCreate" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-3/4">
-      <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
-      <CreateSchedule />
+      <button @click="toggleCreate" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
+      <CreateSchedule :fetch="fetchSchedules" @createSchedule="toggleCreate"/>
     </div>
   </div>
 
-  <div v-if="showEditScheduleModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div v-if="showEdit" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-3/4">
-      <button @click="showEditScheduleModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
+      <button @click="toggleEdit" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
       <EditSchedule />
     </div>
   </div>

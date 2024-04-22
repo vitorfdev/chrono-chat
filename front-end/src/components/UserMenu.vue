@@ -10,22 +10,33 @@ const users = ref([
   
 ])
 
+const updateId = ref([])
+
+const handleId = (value) => {
+  console.log(value)
+  updateId.value = value
+}
+
 const fetchUsers = async () => {
   const response = await axios.get('http://localhost:3000/users')
   users.value = response.data
 }
 
-const showModal = ref(false)
-const showEditUserModal = ref(false)
+const showCreate = ref(false)
 
-function openEditUserModal() {
-  showEditUserModal.value = true
+function toggleCreate() {
+  showCreate.value = !showCreate.value
+}
+const showEdit = ref(false)
+
+function toggleEdit() {
+  showEdit.value = !showEdit.value
 }
 
 const closeEscape = event => {
   if (event.key == 'Escape') {
-    showModal.value = false
-    showEditUserModal.value = false
+    showCreate.value = false
+    showEdit.value = false
   }
 }
 
@@ -51,11 +62,11 @@ onUnmounted(() => {
       <div>
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(user, index) in users" :key="index">
-            <User :id="user.id" :name="user.username" :email="user.email" :password="user.password" :fetch="fetchUsers" @editUser="openEditUserModal" />
+            <User :id="user.id" :name="user.username" :email="user.email" :password="user.password" :fetch="fetchUsers" @editUser="toggleEdit" @sendId="handleId" />
           </li>
         </ul>
       </div>
-      <div @click="showModal = true">
+      <div @click="toggleCreate">
         <button class="bg-purple-600 rounded-lg p-2 w-64 text-white hover:bg-purple-800 duration-200 m-2">
           Criar Usuário
         </button>
@@ -63,17 +74,17 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div v-if="showCreate" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-2/4">
-      <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
-      <CreateUser />
+      <button @click="toggleCreate" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
+      <CreateUser :fetch="fetchUsers" @createUser="toggleCreate"/>
     </div>
   </div>
 
-  <div v-if="showEditUserModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div v-if="showEdit" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-2/4">
-      <button @click="showEditUserModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
-      <EditUser />
+      <button @click="toggleEdit" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
+      <EditUser :id="updateId" :fetch="fetchUsers" @updateUser="toggleEdit" />
     </div>
   </div>
 </template>

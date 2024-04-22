@@ -7,7 +7,7 @@ const props = defineProps({
   name: String,
   email: String,
   password: String,
-  fetch: Function
+  fetch: Function,
 })
 
 const deleteUser = async () => {
@@ -17,14 +17,15 @@ const deleteUser = async () => {
 }
 
 const passwordVisible = ref(false)
-const emit = defineEmits(['editUser'])
 
 function showPassword() {
   passwordVisible.value = !passwordVisible.value
 }
 
+const emit = defineEmits(['editUser', 'sendId'])
 function openEditUserModal() {
   emit('editUser')
+  emit('sendId', props.id)
 }
 </script>
 
