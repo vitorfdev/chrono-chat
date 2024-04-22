@@ -1,5 +1,13 @@
-<script setup>
+<script>
+import { checkScheduledMessages } from './services/scheduleService'
 
+export default {
+  mounted() {
+    checkScheduledMessages();
+
+    setInterval(checkScheduledMessages, 60000);
+  }
+}
 </script>
 
 <template>

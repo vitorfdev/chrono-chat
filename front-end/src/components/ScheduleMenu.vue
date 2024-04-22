@@ -1,7 +1,7 @@
 <script setup>
 import Schedule from './info/Schedule.vue'
-import CreateSchedule from './modals/CreateSchedule.vue';
-import EditSchedule from './modals/EditSchedule.vue';
+import CreateSchedule from './modals/CreateSchedule.vue'
+import EditSchedule from './modals/EditSchedule.vue'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const schedules = ref([
@@ -9,16 +9,16 @@ const schedules = ref([
 ])
 
 const showModal = ref(false)
-const showEditScheduleModal = ref(false);
+const showEditScheduleModal = ref(false)
 
 function openEditScheduleModal() {
-  showEditScheduleModal.value = true;
+  showEditScheduleModal.value = true
 }
 
 const closeEscape = event => {
   if (event.key == 'Escape') {
-    showModal.value = false;
-    showEditScheduleModal.value = false;
+    showModal.value = false
+    showEditScheduleModal.value = false
   }
 }
 
@@ -59,14 +59,14 @@ onUnmounted(() => {
 
   <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-3/4">
-      <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
+      <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
       <CreateSchedule />
     </div>
   </div>
 
   <div v-if="showEditScheduleModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-3/4">
-      <button @click="showEditScheduleModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
+      <button @click="showEditScheduleModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
       <EditSchedule />
     </div>
   </div>

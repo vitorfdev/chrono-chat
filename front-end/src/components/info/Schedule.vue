@@ -8,10 +8,10 @@ defineProps({
   scheduleDate: String
 })
 
-const emit = defineEmits(['editSchedule']);
+const emit = defineEmits(['editSchedule'])
 
 function openEditScheduleModal() {
-  emit('editSchedule');
+  emit('editSchedule')
 }
 </script>
 

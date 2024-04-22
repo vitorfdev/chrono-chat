@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 defineProps({
   name: String,
@@ -8,14 +8,14 @@ defineProps({
 })
 
 const passwordVisible = ref(false)
-const emit = defineEmits(['editUser']);
+const emit = defineEmits(['editUser'])
 
 function showPassword() {
   passwordVisible.value = !passwordVisible.value
 }
 
 function openEditUserModal() {
-  emit('editUser');
+  emit('editUser')
 }
 </script>
 

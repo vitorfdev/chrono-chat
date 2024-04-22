@@ -1,6 +1,6 @@
 <script>
-  import ScheduleMenu from '../components/ScheduleMenu.vue';
-  import UserMenu from '../components/UserMenu.vue';
+  import ScheduleMenu from '../components/ScheduleMenu.vue'
+  import UserMenu from '../components/UserMenu.vue'
 
   export default {
     components: {

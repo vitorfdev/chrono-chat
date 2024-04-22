@@ -1,7 +1,7 @@
 <script setup>
 import User from './info/User.vue'
 import CreateUser from './modals/CreateUser.vue'
-import EditUser from './modals/EditUser.vue';
+import EditUser from './modals/EditUser.vue'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 
@@ -10,16 +10,16 @@ const users = ref([
 ])
 
 const showModal = ref(false)
-const showEditUserModal = ref(false);
+const showEditUserModal = ref(false)
 
 function openEditUserModal() {
-  showEditUserModal.value = true;
+  showEditUserModal.value = true
 }
 
 const closeEscape = event => {
   if (event.key == 'Escape') {
-    showModal.value = false;
-    showEditUserModal.value = false;
+    showModal.value = false
+    showEditUserModal.value = false
   }
 }
 
@@ -58,14 +58,14 @@ onUnmounted(() => {
 
   <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-2/4">
-      <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
+      <button @click="showModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
       <CreateUser />
     </div>
   </div>
 
   <div v-if="showEditUserModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-4 rounded shadow-md w-2/4 h-2/4">
-      <button @click="showEditUserModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times;</button>
+      <button @click="showEditUserModal = false" class="bg-white hover:bg-slate-400 w-8 h-8 rounded-full m-4 absolute top-0 right-0 align-middle font-bold text-center text-xl text-purple-600 hover:text-purple-800">&times</button>
       <EditUser />
     </div>
   </div>
