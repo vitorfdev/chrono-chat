@@ -1,12 +1,24 @@
 <script setup>
+import axios from 'axios'
+import moment from 'moment'
 import Schedule from './info/Schedule.vue'
 import CreateSchedule from './modals/CreateSchedule.vue'
 import EditSchedule from './modals/EditSchedule.vue'
 import { onMounted, onUnmounted, ref } from 'vue'
 
-const schedules = ref([
-  
-])
+const schedules = ref([])
+
+const fetchSchedules = async () => {
+  const response = await axios.get('http://localhost:3000/schedules')
+  const rawSchedules = response.data
+
+  rawSchedules.forEach(schedule => {
+    schedule.formattedCreateDate = moment(schedule.createDate, 'DDMMYYYY-HHmm').format('DD/MM/YYYY HH:mm');
+    schedule.formattedScheduleDate = moment(schedule.scheduleDate, 'DDMMYYYY-HHmm').format('DD/MM/YYYY HH:mm');
+  });
+
+  schedules.value = rawSchedules
+}
 
 const showModal = ref(false)
 const showEditScheduleModal = ref(false)
@@ -24,6 +36,7 @@ const closeEscape = event => {
 
 onMounted(() => {
   window.addEventListener('keydown', closeEscape)
+  fetchSchedules()
 })
 
 onUnmounted(() => {
@@ -45,13 +58,13 @@ onUnmounted(() => {
       <div>
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(schedule, index) in schedules" :key="index">
-            <Schedule :id="index" :date="schedule.date" :phone="schedule.phone" :message="schedule.message"
-              :scheduleDate="schedule.scheduleDate" @editSchedule="openEditScheduleModal"/>
+            <Schedule :id="index" :date="schedule.formattedCreateDate" :phone="schedule.phone" :message="schedule.message"
+              :scheduleDate="schedule.formattedScheduleDate" @editSchedule="openEditScheduleModal"/>
           </li>
         </ul>
       </div>
-      <div @click="showModal = true">
-        <button class="bg-purple-600 rounded-lg p-2 w-64 text-white hover:bg-purple-800 duration-200 m-2">Agendar
+      <div>
+        <button @click="showModal = true" class="bg-purple-600 rounded-lg p-2 w-64 text-white hover:bg-purple-800 duration-200 m-2">Agendar
           Mensagem</button>
       </div>
     </div>

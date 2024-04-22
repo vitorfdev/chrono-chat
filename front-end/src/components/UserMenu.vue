@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios'
 import User from './info/User.vue'
 import CreateUser from './modals/CreateUser.vue'
 import EditUser from './modals/EditUser.vue'
@@ -8,6 +9,11 @@ import { onMounted, onUnmounted, ref } from 'vue'
 const users = ref([
   
 ])
+
+const fetchUsers = async () => {
+  const response = await axios.get('http://localhost:3000/users')
+  users.value = response.data
+}
 
 const showModal = ref(false)
 const showEditUserModal = ref(false)
@@ -25,6 +31,7 @@ const closeEscape = event => {
 
 onMounted(() => {
   window.addEventListener('keydown', closeEscape)
+  fetchUsers()
 })
 
 onUnmounted(() => {
@@ -44,7 +51,7 @@ onUnmounted(() => {
       <div>
         <ul class="min-h-96 max-h-96 overflow-y-auto">
           <li v-for="(user, index) in users" :key="index">
-            <User :id="index" :name="user.name" :email="user.email" :password="user.password" @editUser="openEditUserModal" />
+            <User :id="index" :name="user.username" :email="user.email" :password="user.password" @editUser="openEditUserModal" />
           </li>
         </ul>
       </div>
